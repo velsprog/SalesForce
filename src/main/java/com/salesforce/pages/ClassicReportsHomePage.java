@@ -1,6 +1,10 @@
 package com.salesforce.pages;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -8,7 +12,11 @@ import java.util.List;
 
 import org.apache.tools.ant.taskdefs.Sleep;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.framework.selenium.api.design.Locators;
 import com.framework.testng.api.base.ProjectSpecificMethods;
@@ -16,7 +24,8 @@ import com.framework.testng.api.base.ProjectSpecificMethods;
 public class ClassicReportsHomePage extends ProjectSpecificMethods{
 	
 	public ClassicReportsHomePage clickLeads() throws InterruptedException {
-		Thread.sleep(10000);
+		//Thread.sleep(5000);
+		getWait().until(ExpectedConditions.numberOfWindowsToBe(2));
 		switchToLastOpenWindow();
 		System.out.println(getDriver().getTitle());
 		waitForApperance(locateElement(Locators.XPATH, "//div[contains(@*,'categories')]//span[text()='Leads']"));
@@ -26,8 +35,21 @@ public class ClassicReportsHomePage extends ProjectSpecificMethods{
 		return this;
 	}
 	
-	public ClassicReportsHomePage downloadImage() {
+	public ClassicReportsHomePage downloadImage() throws AWTException, InterruptedException {
 		
+		WebElement el = locateElement(Locators.XPATH, "//img[contains(@id,'report_img')]");
+		Actions action = new Actions(getDriver());
+		action.contextClick(el).build().perform();
+//		wait(500).sendKeys(Keys.CONTROL,"v").build().perform();
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_V);
+		Thread.sleep(3000);
+		robot.keyPress(KeyEvent.VK_T);
+		robot.keyPress(KeyEvent.VK_E);
+		robot.keyPress(KeyEvent.VK_S);
+		robot.keyPress(KeyEvent.VK_T);
+		action.pause(500).sendKeys(String.valueOf((int)(Math.random()*100000))).build().perform();
+		robot.keyPress(KeyEvent.VK_ENTER);
 		return this;
 	}
 	
@@ -55,6 +77,7 @@ public class ClassicReportsHomePage extends ProjectSpecificMethods{
 	
 	public ClassicReportsHomePage verifyReportFormat(String format) {
 		verifyExactText(locateElement(Locators.XPATH, "//table[@id='reportFormatMink']//td[contains(@class,'mc')]//button"), format);
+		reportStep("Reporting Format is correct.", "Pass");
 		return this;
 	}
 	
@@ -95,7 +118,7 @@ public class ClassicReportsHomePage extends ProjectSpecificMethods{
 	}
 	
 	public ClassicReportsHomePage enterReportUniqueName(String name) {
-		clearAndType(locateElement(Locators.XPATH, "//input[@name='reportDevName']"), name+"5124");
+		clearAndType(locateElement(Locators.XPATH, "//input[@name='reportDevName']"), name+String.valueOf((int)(Math.random()*10000)));
 		reportStep("Report Unique Name entered Successfully.", "Pass");
 		return this;
 	}
@@ -120,10 +143,13 @@ public class ClassicReportsHomePage extends ProjectSpecificMethods{
 	}
 	
 	public ClassicReportsHomePage verifyReportIsCreated(String name) throws InterruptedException {
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
+		getWait().until(ExpectedConditions.numberOfWindowsToBe(3));
 		switchToLastOpenWindow();
 		//switchToFrame(locateElement(Locators.XPATH, "(//iframe[contains(@class,'isEdit reportsReportBuilder')])"));
+		waitForApperance(locateElement(Locators.XPATH, "//h2[@class='pageDescription']"));
 		verifyExactText(locateElement(Locators.XPATH, "//h2[@class='pageDescription']"), name);
+		reportStep("Report is Created Successfuly.", "Pass");
 		return this;
 	}
 	
@@ -133,6 +159,29 @@ public class ClassicReportsHomePage extends ProjectSpecificMethods{
 		return this;
 	}
 	
+	public ClassicReportsHomePage clickClose() {
+		click(locateElement(Locators.XPATH, "//button[text()='Close']"));
+		try {
+			click(locateElement(Locators.XPATH, "//table[contains(@id,'comp')]//button[text()='Close']"));
+		} catch (NoSuchElementException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		reportStep("Close Button clicked Successfully.", "Pass");
+		return this;
+	}
+	
+	public ClassicReportsHomePage getAndVerifyReportName(String name) {
+		switchToWindow(0);
+		verifyExactText(locateElement(Locators.XPATH, "//table/tbody/tr[1]/th//a"), name);
+		reportStep("Report Name is correct.", "Pass");
+		return this;
+	}
+	
+	public void getCreatedOnDate() {
+		String createdOn = getElementText(locateElement(Locators.XPATH, "//table/tbody/tr[1]/td[4]//lightning-formatted-date-time"));
+		System.out.println(createdOn);
+	}
 	
 	
 	

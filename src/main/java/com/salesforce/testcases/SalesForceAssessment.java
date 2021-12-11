@@ -1,5 +1,7 @@
 package com.salesforce.testcases;
 
+import java.awt.AWTException;
+
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -26,7 +28,7 @@ public class SalesForceAssessment extends ProjectSpecificMethods {
 							, String format
 							, String reportName
 							,String desc
-							,String reportFolder) throws InterruptedException {
+							,String reportFolder) throws InterruptedException, AWTException {
 		
 		new LoginPage()
 		.enterUsername(username)
@@ -38,6 +40,7 @@ public class SalesForceAssessment extends ProjectSpecificMethods {
 		.clickReports()
 		.clickNewReportSalesforceClassic()
 		.clickLeads()
+		.downloadImage()
 		.clickCreateButton()
 		.selectRange(rangeAs)
 		.selectToDate()
@@ -50,7 +53,12 @@ public class SalesForceAssessment extends ProjectSpecificMethods {
 		.enterReportDescription(desc)
 		.selectReportFolder(reportFolder)
 		.clicksaveReport()
-		.verifyReportIsCreated(reportName);
+		.verifyReportIsCreated(reportName)
+		.clickRunReport()
+		.getTotalRecords()
+		.clickClose()
+		.getAndVerifyReportName(reportName)
+		.getCreatedOnDate();
 		
 	}
 
