@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="tests" thread-count="2">
+  <test  name="ChromeTest">
+  <parameter name="browser" value="chrome"/>
+<!--   <parameter name="node" value="http://localhost:5555/wd/hub"/> -->
+    <classes>
+   	  <class name="com.salesforce.testcases.SalesForceAssessment"/>
+   	  <!-- <class name="com.salesforce.testcases.S0130_EditAccount"/> -->
+    </classes>
+  </test> <!-- Test -->
+   <!--  <test  name="FirefoxTest">
+  <parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="com.salesforce.testcases.TC002_EditIndividual"/>
+      <class name="com.salesforce.testcases.S0129_CreateNewAccount"/>
+    </classes>
+  </test> Test -->
+</suite> <!-- Suite -->
