@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.tools.ant.taskdefs.Sleep;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -94,7 +95,7 @@ public class ClassicReportsHomePage extends ProjectSpecificMethods{
 	}
 	
 	public ClassicReportsHomePage enterReportUniqueName(String name) {
-		clearAndType(locateElement(Locators.XPATH, "//input[@name='reportDevName']"), name);
+		clearAndType(locateElement(Locators.XPATH, "//input[@name='reportDevName']"), name+"5124");
 		reportStep("Report Unique Name entered Successfully.", "Pass");
 		return this;
 	}
@@ -118,10 +119,21 @@ public class ClassicReportsHomePage extends ProjectSpecificMethods{
 		return this;
 	}
 	
-	public void verifyReportIsCreated(String name) {
+	public ClassicReportsHomePage verifyReportIsCreated(String name) throws InterruptedException {
+		Thread.sleep(5000);
+		switchToLastOpenWindow();
 		//switchToFrame(locateElement(Locators.XPATH, "(//iframe[contains(@class,'isEdit reportsReportBuilder')])"));
 		verifyExactText(locateElement(Locators.XPATH, "//h2[@class='pageDescription']"), name);
+		return this;
 	}
+	
+	public ClassicReportsHomePage clickRunReport() {
+		click(locateElement(Locators.XPATH, "//button[text()='Run Report']"));
+		reportStep("Run Report Clicked Successfully.", "Pass");
+		return this;
+	}
+	
+	
 	
 	
 	
