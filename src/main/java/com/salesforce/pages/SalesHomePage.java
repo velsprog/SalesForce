@@ -1,8 +1,11 @@
 package com.salesforce.pages;
 
+import org.springframework.stereotype.Component;
+
 import com.framework.selenium.api.design.Locators;
 import com.framework.testng.api.base.ProjectSpecificMethods;
 
+@Component
 public class SalesHomePage extends ProjectSpecificMethods {
 
 	public SalesHomePage verifySalesHomePage() {
@@ -35,7 +38,7 @@ public class SalesHomePage extends ProjectSpecificMethods {
 	public AccountsPage clickAccountsTab() {
 		clickUsingJs(locateElement(Locators.XPATH, "//span[@class='slds-truncate' and text()='Accounts']"));
 		reportStep("Accounts Tabs Clicked.", "pass");
-		return new AccountsPage();
+		return accountspage;
 	}
 
 	public SalesHomePage clickMoreTab() {

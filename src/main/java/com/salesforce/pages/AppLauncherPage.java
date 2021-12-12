@@ -2,9 +2,12 @@ package com.salesforce.pages;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.springframework.stereotype.Component;
+
 import com.framework.selenium.api.design.Locators;
 import com.framework.testng.api.base.ProjectSpecificMethods;
 
+@Component
 public class AppLauncherPage extends ProjectSpecificMethods {
 
 	public AppLauncherPage verifyAppLauncherPage() {
@@ -20,7 +23,7 @@ public class AppLauncherPage extends ProjectSpecificMethods {
 	public SalesHomePage clickSales() {
 		click(locateElement(Locators.XPATH,
 				"//p[@title='Manage your sales process with accounts, leads, opportunities, and more']"));
-		return new SalesHomePage();
+		return saleshomepage;
 	}
 
 	public ContentHomePage clickContent() {

@@ -10,8 +10,9 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 
-public class DriverInstance  {
+public class DriverInstance extends AbstractTestNGSpringContextTests  {
 
 	private static final ThreadLocal<RemoteWebDriver> remoteWebdriver = new ThreadLocal<RemoteWebDriver>();
 	private static final ThreadLocal<WebDriverWait> wait = new  ThreadLocal<WebDriverWait>();

@@ -7,12 +7,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.pagefactory.ByAll;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.springframework.stereotype.Component;
 
 import com.framework.selenium.api.design.Locators;
 import com.framework.testng.api.base.ProjectSpecificMethods;
 
 import freemarker.template.SimpleDate;
 
+@Component
 public class CreateOrEditAccountsPage extends ProjectSpecificMethods {
 
 	public CreateOrEditAccountsPage typeAccountName(String accountName) {
@@ -154,7 +156,7 @@ public class CreateOrEditAccountsPage extends ProjectSpecificMethods {
 		click(el);
 		reportStep("Account saved successfully.", "pass");
 		if(landingPage.contains("Accounts"))
-			return new AccountsPage();
+			return accountspage;
 		else if(landingPage.contains("Contact"))
 			return new CreateOrEditContactsPage();
 		else

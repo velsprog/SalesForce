@@ -3,10 +3,12 @@ package com.salesforce.pages;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
+import org.springframework.stereotype.Component;
 
 import com.framework.selenium.api.design.Locators;
 import com.framework.testng.api.base.ProjectSpecificMethods;
 
+@Component
 public class HomePage extends ProjectSpecificMethods {
 
 	public HomePage verifyHomePage() {
@@ -24,7 +26,7 @@ public class HomePage extends ProjectSpecificMethods {
 	public AppLauncherPage clickViewAll() {
 		click(locateElement(Locators.XPATH, "//button[text()='View All']"));
 		reportStep("ViewAll link clicked.", "pass");
-		return new AppLauncherPage();
+		return applauncherpage;
 	}
 	
 	public SalesforceStatusPage clickSlider() throws InterruptedException {

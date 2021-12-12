@@ -4,17 +4,17 @@
   <test thread-count="2" parallel="tests" name="ChromeTest(failed)">
     <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="com.salesforce.testcases.SalesForceAssessment">
+      <class name="com.salesforce.testcases.S0129_CreateNewAccount">
         <methods>
           <include name="postCondition"/>
           <include name="setValues"/>
+          <include name="createAccount" invocation-numbers="0"/>
           <include name="endResult"/>
           <include name="startReport"/>
           <include name="preCondition"/>
           <include name="startTestCase"/>
-          <include name="createAccount" invocation-numbers="0"/>
         </methods>
-      </class> <!-- com.salesforce.testcases.SalesForceAssessment -->
+      </class> <!-- com.salesforce.testcases.S0129_CreateNewAccount -->
     </classes>
   </test> <!-- ChromeTest(failed) -->
 </suite> <!-- Failed suite [Suite] -->

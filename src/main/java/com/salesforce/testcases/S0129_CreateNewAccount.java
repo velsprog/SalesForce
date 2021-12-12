@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import com.framework.testng.api.base.ProjectSpecificMethods;
 import com.salesforce.pages.AccountsPage;
+import com.salesforce.pages.AutowiredPages;
 import com.salesforce.pages.LoginPage;
 
 public class S0129_CreateNewAccount extends ProjectSpecificMethods {
@@ -22,7 +23,7 @@ public class S0129_CreateNewAccount extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData")
 	public void createAccount(String username, String password, String accountName, String ownership) {
 		
-		((AccountsPage) new LoginPage()
+		((AccountsPage) loginpage
 		.enterUsername(username)
 		.enterPassword(password)
 		.clickLogin()

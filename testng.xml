@@ -5,7 +5,8 @@
   <parameter name="browser" value="chrome"/>
 <!--   <parameter name="node" value="http://localhost:5555/wd/hub"/> -->
     <classes>
-   	  <class name="com.salesforce.testcases.SalesForceAssessment"/>
+   	  <class name="com.salesforce.testcases.S0129_CreateNewAccount"/>
+   	  <!-- <class name="com.salesforce.testcases.SalesForceAssessment"/> -->
    	  <!-- <class name="com.salesforce.testcases.S0130_EditAccount"/> -->
     </classes>
   </test> <!-- Test -->

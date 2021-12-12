@@ -5,11 +5,11 @@
 	<groupId>org.testleaf</groupId>
 	<artifactId>Saleforce_Assessment</artifactId>
 	<version>1.0.0</version>
-	
+
 	<properties>
-	<xmlfile>testng.xml</xmlfile>
+		<xmlfile>testng.xml</xmlfile>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
@@ -65,6 +65,21 @@
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-java</artifactId>
 			<version>4.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>5.3.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>5.3.7</version>
 		</dependency>
 	</dependencies>
 	<build>

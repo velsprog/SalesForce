@@ -9,11 +9,13 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.pagefactory.ByAll;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.springframework.stereotype.Component;
 import org.testng.Assert;
 
 import com.framework.selenium.api.design.Locators;
 import com.framework.testng.api.base.ProjectSpecificMethods;
 
+@Component
 public class AccountsPage extends ProjectSpecificMethods {
 	List<String> expectedList = new ArrayList<>();
 	List<String> actualList = new ArrayList<>();
@@ -23,7 +25,7 @@ public class AccountsPage extends ProjectSpecificMethods {
 		WebElement el = getDriver().findElement(new ByAll(By.xpath("//div[@title='New']/parent::a"),By.xpath("//input[@name='new']")));
 		click(el);
 		reportStep("Add New Account Button Clicked.", "pass");
-		return new CreateOrEditAccountsPage();
+		return createoreditaccountspage;
 	}
 	
 	public AccountsPage entersearchkey(String accountName) throws InterruptedException {
@@ -44,7 +46,7 @@ public class AccountsPage extends ProjectSpecificMethods {
 		click(Locators.XPATH, "//table[contains(@class,'forceRecordLayout')]/tbody/tr/td[6]//a");
 		click(Locators.XPATH, "//a[@title='Edit']");
 		reportStep("Edit Button clicked.", "pass");
-		return	new CreateOrEditAccountsPage();
+		return	createoreditaccountspage;
 	}
 	
 	public AccountsPage clickDeleteForAccount(String accountName) throws InterruptedException {
